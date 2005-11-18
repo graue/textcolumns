@@ -67,14 +67,6 @@ static long gettime(void)
 	return thetime - progstarttime;
 }
 
-static void millisleep(int ms)
-{
-	struct timespec tsp;
-	tsp.tv_sec  = ms / 1000;
-	tsp.tv_nsec = (ms % 1000) * 1000000L;
-	nanosleep(&tsp, NULL);
-}
-
 /* delay(n)  to start a delay of n milliseconds
    delay(0)  to actually wait until the delay is over
    delay(-1) to check how many ms of the delay are left */

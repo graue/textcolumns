@@ -111,6 +111,7 @@ typedef enum
 	STATE_GAMEOVER
 } gamestate_t;
 
+void millisleep(int ms);
 void playgame(int w, int h);
 
 void drawborders(int width, int height);

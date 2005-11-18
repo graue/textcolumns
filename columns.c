@@ -30,6 +30,14 @@ static void die(char *s)
 }
 #endif
 
+void millisleep(int ms)
+{
+	struct timespec tsp;
+	tsp.tv_sec  = ms / 1000;
+	tsp.tv_nsec = (ms % 1000) * 1000000L;
+	nanosleep(&tsp, NULL);
+}
+
 int main(int argc, char *argv[])
 {
 	signal(SIGINT, finish);
