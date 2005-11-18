@@ -115,6 +115,7 @@ typedef enum
 void millisleep(int ms);
 void playgame(int w, int h);
 
+int playsizeok(int width, int height);
 void drawborders(int width, int height);
 void drawblock(int row, int col, char ch);
 void drawlevel(int level);

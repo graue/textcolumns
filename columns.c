@@ -22,13 +22,11 @@ static void finish(int sig)
 	exit(0);
 }
 
-#ifdef UNUSED
 static void die(char *s)
 {
 	endmsg = s;
 	finish(0);
 }
-#endif
 
 void millisleep(int ms)
 {
@@ -104,6 +102,10 @@ int main(int argc, char *argv[])
 	cbreak();
 	nodelay(stdscr, TRUE);
 	curs_set(0); /* invisible cursor */
+
+	/* make sure the chosen width and height aren't too big */
+	if (!playsizeok(width, height))
+		die("Screen is too small to accommodate the playfield");
 
 	(void) argc;
 	(void) argv;

@@ -31,6 +31,18 @@ static void drawvertline(int rowstart, int rowend, int col)
 		mvaddch(i, col, '|');
 }
 
+int playsizeok(int width, int height)
+{
+#ifdef DOUBLEWIDTH
+	width *= 2;
+#endif
+	if (width + (2+PANEL_WIDTH)*2 > COLS)
+		return 0;
+	if (height + 2 > LINES)
+		return 0;
+	return 1;
+}
+
 void drawborders(int width, int height)
 {
 	drawwidth  = width;
