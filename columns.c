@@ -40,6 +40,61 @@ void millisleep(int ms)
 
 int main(int argc, char *argv[])
 {
+	extern char *optarg;
+	extern int optind;
+	int width = DEF_WIDTH;
+	int height = DEF_HEIGHT;
+	int ch;
+	int warned = 0;
+
+	while ((ch = getopt(argc, argv, "h:w:")) != -1)
+	{
+		switch (ch)
+		{
+		case 'h':
+			height = atoi(optarg);
+			if (height < MIN_HEIGHT)
+			{
+				printf("Height value too small, "
+					"using %d\n", MIN_HEIGHT);
+				warned = 1;
+				height = MIN_HEIGHT;
+			}
+			else if (height > MAX_HEIGHT)
+			{
+				printf("Height value too big, "
+					"using %d\n", MAX_HEIGHT);
+				warned = 1;
+				height = MAX_HEIGHT;
+			}
+			break;
+		case 'w':
+			width = atoi(optarg);
+			if (width < MIN_WIDTH)
+			{
+				printf("Width value too small, "
+					"using %d\n", MIN_WIDTH);
+				warned = 1;
+				width = MIN_WIDTH;
+			}
+			else if (width > MAX_WIDTH)
+			{
+				printf("Width value too big, "
+					"using %d\n", MAX_WIDTH);
+				warned = 1;
+				width = MAX_WIDTH;
+			}
+			break;
+		case '?':
+		default:
+			printf("Unrecognized option '%c', ignoring\n", ch);
+			warned = 1;
+		}
+	}
+
+	if (warned)
+		millisleep(1000);
+
 	signal(SIGINT, finish);
 
 	initscr();
@@ -53,7 +108,7 @@ int main(int argc, char *argv[])
 	(void) argc;
 	(void) argv;
 
-	playgame(DEF_WIDTH, DEF_HEIGHT);
+	playgame(width, height);
 
 	finish(0);
 

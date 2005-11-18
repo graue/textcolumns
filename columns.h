@@ -6,6 +6,7 @@ columns.h: definitions
 
 #include <curses.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <limits.h>
 #include <signal.h>
