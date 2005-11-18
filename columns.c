@@ -49,6 +49,6 @@ int main(int argc, char *argv[])
 
 	finish(0);
 
-	/* NOT REACHED */
+	/* NOTREACHED */
 	return 0;
 }
