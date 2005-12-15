@@ -12,12 +12,12 @@ static void finish(int sig)
 {
 	sig = sig;
 
-	curs_set(1); /* visible */
-	endwin();
+	(void) curs_set(1); /* visible */
+	(void) endwin();
 
-	putchar('\n');
+	(void) putchar('\n');
 	if (endmsg != NULL)
-		printf("%s\n", endmsg);
+		(void) printf("%s\n", endmsg);
 
 	exit(0);
 }
@@ -33,7 +33,7 @@ void millisleep(int ms)
 	struct timespec tsp;
 	tsp.tv_sec  = ms / 1000;
 	tsp.tv_nsec = (ms % 1000) * 1000000L;
-	nanosleep(&tsp, NULL);
+	(void) nanosleep(&tsp, NULL);
 }
 
 int main(int argc, char *argv[])
@@ -53,14 +53,14 @@ int main(int argc, char *argv[])
 			height = atoi(optarg);
 			if (height < MIN_HEIGHT)
 			{
-				printf("Height value too small, "
+				(void) printf("Height value too small, "
 					"using %d\n", MIN_HEIGHT);
 				warned = 1;
 				height = MIN_HEIGHT;
 			}
 			else if (height > MAX_HEIGHT)
 			{
-				printf("Height value too big, "
+				(void) printf("Height value too big, "
 					"using %d\n", MAX_HEIGHT);
 				warned = 1;
 				height = MAX_HEIGHT;
@@ -70,14 +70,14 @@ int main(int argc, char *argv[])
 			width = atoi(optarg);
 			if (width < MIN_WIDTH)
 			{
-				printf("Width value too small, "
+				(void) printf("Width value too small, "
 					"using %d\n", MIN_WIDTH);
 				warned = 1;
 				width = MIN_WIDTH;
 			}
 			else if (width > MAX_WIDTH)
 			{
-				printf("Width value too big, "
+				(void) printf("Width value too big, "
 					"using %d\n", MAX_WIDTH);
 				warned = 1;
 				width = MAX_WIDTH;
@@ -85,7 +85,8 @@ int main(int argc, char *argv[])
 			break;
 		case '?':
 		default:
-			printf("Unrecognized option '%c', ignoring\n", ch);
+			(void) printf("Unrecognized option '%c', ignoring\n",
+				ch);
 			warned = 1;
 		}
 	}
@@ -95,13 +96,13 @@ int main(int argc, char *argv[])
 
 	(void) signal(SIGINT, finish);
 
-	initscr();
-	keypad(stdscr, TRUE);
-	nonl();
-	noecho();
-	cbreak();
-	nodelay(stdscr, TRUE);
-	curs_set(0); /* invisible cursor */
+	(void) initscr();
+	(void) keypad(stdscr, TRUE);
+	(void) nonl();
+	(void) noecho();
+	(void) cbreak();
+	(void) nodelay(stdscr, TRUE);
+	(void) curs_set(0); /* invisible cursor */
 
 	/* make sure the chosen width and height aren't too big */
 	if (!playsizeok(width, height))

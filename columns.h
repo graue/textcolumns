@@ -117,7 +117,7 @@ void playgame(int w, int h);
 
 int playsizeok(int width, int height);
 void drawborders(int width, int height);
-void drawblock(int row, int col, char ch);
+void drawblock(int row, int col, chtype ch);
 void drawlevel(int level);
 void drawscore(int score);
 void updatescreen(void);

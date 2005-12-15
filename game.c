@@ -53,7 +53,7 @@ static long progstarttime;
 static void starttimer(void)
 {
 	struct timeval progstart;
-	gettimeofday(&progstart, NULL);
+	(void) gettimeofday(&progstart, NULL);
 	progstarttime = progstart.tv_sec * 1000
 		+ progstart.tv_usec / 1000;
 }
@@ -62,7 +62,7 @@ static long gettime(void)
 {
 	struct timeval tv;
 	long thetime;
-	gettimeofday(&tv, NULL);
+	(void) gettimeofday(&tv, NULL);
 	thetime = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return thetime - progstarttime;
 }
@@ -84,7 +84,7 @@ static int delay(int ms)
 		long timeleft = endtime - gettime();
 		while (timeleft > 0)
 		{
-			millisleep(timeleft);
+			millisleep((int) timeleft);
 			timeleft = endtime - gettime();
 		}
 		return 0;
@@ -94,7 +94,7 @@ static int delay(int ms)
 		long timeleft = endtime - gettime();
 		if (timeleft < 0)
 			return 0;
-		return timeleft;
+		return (int) timeleft;
 	}
 }
 
@@ -123,7 +123,7 @@ static void drawscreen(void)
 	{
 		if (!cleanblock[r][c])
 		{
-			drawblock(r-3, c, getblock(r, c));
+			drawblock(r-3, c, (chtype) getblock(r, c));
 			cleanblock[r][c] = 1;
 		}
 	}
@@ -521,7 +521,7 @@ static void showblinkers(void)
 	for (c = 0; c < width;  c++)
 	{
 		if (blinking[r][c])
-			drawblock(r-3, c, playfield[r][c]);
+			drawblock(r-3, c, (chtype) playfield[r][c]);
 	}
 }
 
@@ -546,9 +546,9 @@ static int enforcegravity(void)
 
 static void pausegame(void)
 {
-	nodelay(stdscr, FALSE); /* do wait this time */
-	getch();
-	nodelay(stdscr, TRUE);  /* now stop delaying for input */
+	(void) nodelay(stdscr, FALSE); /* do wait this time */
+	(void) getch();
+	(void) nodelay(stdscr, TRUE);  /* now stop delaying for input */
 }
 
 /* devour all input up to a 'q' (in which case return 1) or the end of
@@ -556,17 +556,17 @@ static void pausegame(void)
 static int wantstoquit(void)
 {
 	int ch;
-	int pause = 0;
+	int pausenow = 0;
 
 	while ((ch = getch()) != ERR)
 	{
 		if (ch == 'q')
 			return 1;
 		else if (ch == 'p')
-			pause = 1;
+			pausenow = 1;
 	}
 
-	if (pause)
+	if (pausenow)
 		pausegame();
 
 	return 0; /* nope, the player doesn't want to quit just yet */
@@ -576,7 +576,7 @@ static void dofall(void)
 {
 	long timeleft;
 
-	delay(falldelay); /* set a delay */
+	(void) delay(falldelay); /* set a delay */
 
 	while ((timeleft = delay(-1)) > 20)
 	{
@@ -620,7 +620,7 @@ static void dofall(void)
 	}
 
 	if (timeleft)
-		delay(0); /* finish the delay */
+		(void) delay(0); /* finish the delay */
 
 	if (!makeblocksfall())
 	{

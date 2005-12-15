@@ -18,9 +18,9 @@ static void drawhorizline(int row, int colstart, int colend)
 {
 	int i;
 
-	move(row, colstart);
+	(void) move(row, colstart);
 	for (i = colstart; i <= colend; i++)
-		addch('-');
+		(void) addch('-');
 }
 
 static void drawvertline(int rowstart, int rowend, int col)
@@ -28,7 +28,7 @@ static void drawvertline(int rowstart, int rowend, int col)
 	int i;
 
 	for (i = rowstart; i <= rowend; i++)
-		mvaddch(i, col, '|');
+		(void) mvaddch(i, col, '|');
 }
 
 int playsizeok(int width, int height)
@@ -57,7 +57,7 @@ void drawborders(int width, int height)
 	drawtop  = (LINES - drawheight) / 2;
 
 	/* clear the screen */
-	erase();
+	(void) erase();
 
 	/* draw the horizontal borders */
 	drawhorizline(drawtop - 1,          drawleft, drawleft + drawwidth - 1);
@@ -68,14 +68,14 @@ void drawborders(int width, int height)
 	drawvertline(drawtop, drawtop + drawheight - 1, drawleft + drawwidth);
 }
 
-void drawblock(int row, int col, char ch)
+void drawblock(int row, int col, chtype ch)
 {
 #ifdef DOUBLEWIDTH
 	col *= 2;
 #endif
-	mvaddch(row + drawtop, col + drawleft, ch);
+	(void) mvaddch(row + drawtop, col + drawleft, ch);
 #ifdef DOUBLEWIDTH
-	addch(ch);
+	(void) addch(ch);
 #endif
 }
 
@@ -84,12 +84,12 @@ void drawlevel(int level)
 	char buf[200] = "";
 	int startcol;
 
-	snprintf(buf, 200, "Level %d", level);
+	(void) snprintf(buf, 200, "Level %d", level);
 
 	startcol = drawleft + drawwidth + 2;
-	startcol += (PANEL_WIDTH - strlen(buf)) / 2;
+	startcol += (PANEL_WIDTH - (int) strlen(buf)) / 2;
 
-	mvaddstr(drawtop + 1, startcol, buf);
+	(void) mvaddstr(drawtop + 1, startcol, buf);
 }
 
 void drawscore(int score)
@@ -97,15 +97,15 @@ void drawscore(int score)
 	char buf[200] = "";
 	int startcol;
 
-	snprintf(buf, 200, "%d", score);
+	(void) snprintf(buf, 200, "%d", score);
 
 	startcol = drawleft - 2 - PANEL_WIDTH;
-	startcol += (PANEL_WIDTH - strlen(buf)) / 2;
+	startcol += (PANEL_WIDTH - (int) strlen(buf)) / 2;
 
-	mvaddstr(drawtop + 1, startcol, buf);
+	(void) mvaddstr(drawtop + 1, startcol, buf);
 }
 
 void updatescreen(void)
 {
-	refresh();
+	(void) refresh();
 }
