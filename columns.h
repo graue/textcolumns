@@ -92,6 +92,11 @@ So: we need constants b and t, and a variable d, and a constant d'.
 #define DESTROYER_BLOCK_MINCOUNT 16
 #define DESTROYER_BLOCK_CHANCE    4
 
+/* when the "destroyer block window" starts and ends */
+#define DESTROYER_BLOCK_WINSTART 22
+#define DESTROYER_BLOCK_WINEND \
+	(DESTROYER_BLOCK_WINSTART + DESTROYER_BLOCK_WINDOW)
+
 /*
 	When you destroy numblocks blocks at a time, you get (numblocks *
 (level + scorebonus)) points, where level is your level number (1 to 10), 

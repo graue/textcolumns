@@ -145,7 +145,8 @@ static void startfall(void)
 {
 	fallrow = 0;
 	fallcol = width / 2;
-	if (nextlevel >= 22 && nextlevel < 22 + DESTROYER_BLOCK_WINDOW
+	if (nextlevel >= DESTROYER_BLOCK_WINSTART
+		&& nextlevel < DESTROYER_BLOCK_WINEND
 		&& level >= DESTROYER_BLOCK_MINLEVEL
 		&& blockcount > DESTROYER_BLOCK_MINCOUNT
 		&& random()%DESTROYER_BLOCK_CHANCE)
