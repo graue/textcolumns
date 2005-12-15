@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 	if (warned)
 		millisleep(1000);
 
-	signal(SIGINT, finish);
+	(void) signal(SIGINT, finish);
 
 	initscr();
 	keypad(stdscr, TRUE);
