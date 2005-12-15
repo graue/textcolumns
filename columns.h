@@ -90,7 +90,7 @@ So: we need constants b and t, and a variable d, and a constant d'.
 #define DESTROYER_BLOCK_WINDOW    8
 #define DESTROYER_BLOCK_MINLEVEL  2
 #define DESTROYER_BLOCK_MINCOUNT 16
-#define DESTROYER_BLOCK_CHANCE    4
+#define DESTROYER_BLOCK_CHANCE    3
 
 /* when the "destroyer block window" starts and ends */
 #define DESTROYER_BLOCK_WINSTART 22
