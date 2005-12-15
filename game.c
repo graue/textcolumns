@@ -31,7 +31,7 @@ static int blockcount;
 
 static int scorebonus;
 
-static char *blocks = CH_BLOCKS;
+static const char *blocks = CH_BLOCKS;
 
 static int tolevel[] =
 {
