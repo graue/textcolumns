@@ -149,7 +149,7 @@ static void startfall(void)
 		&& nextlevel < DESTROYER_BLOCK_WINEND
 		&& level >= DESTROYER_BLOCK_MINLEVEL
 		&& blockcount > DESTROYER_BLOCK_MINCOUNT
-		&& random()%DESTROYER_BLOCK_CHANCE)
+		&& random()%DESTROYER_BLOCK_CHANCE == 0)
 	{
 		/* make it a %%% block */
 		setblock(fallrow,   fallcol, blocks[0]);

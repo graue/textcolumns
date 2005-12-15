@@ -87,10 +87,10 @@ So: we need constants b and t, and a variable d, and a constant d'.
              destroyer block
    chance:   the chance of dropping a destroyer block when the above
              conditions are met is 1 in this many */
-#define DESTROYER_BLOCK_WINDOW    7
+#define DESTROYER_BLOCK_WINDOW    8
 #define DESTROYER_BLOCK_MINLEVEL  2
 #define DESTROYER_BLOCK_MINCOUNT 16
-#define DESTROYER_BLOCK_CHANCE    5
+#define DESTROYER_BLOCK_CHANCE    4
 
 /* when the "destroyer block window" starts and ends */
 #define DESTROYER_BLOCK_WINSTART 22
