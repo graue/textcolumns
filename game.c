@@ -29,6 +29,8 @@ static int score;
 static int nextlevel;
 static int blockcount;
 
+static int destlevel; /* last level on which a destroyer block fell */
+
 static int scorebonus;
 
 static const char *blocks = CH_BLOCKS;
@@ -145,7 +147,8 @@ static void startfall(void)
 {
 	fallrow = 0;
 	fallcol = width / 2;
-	if (nextlevel >= DESTROYER_BLOCK_WINSTART
+	if (destlevel < level /* no destroyer blocks yet for this level */
+		&& nextlevel >= DESTROYER_BLOCK_WINSTART
 		&& nextlevel < DESTROYER_BLOCK_WINEND
 		&& level >= DESTROYER_BLOCK_MINLEVEL
 		&& blockcount > DESTROYER_BLOCK_MINCOUNT
@@ -155,6 +158,9 @@ static void startfall(void)
 		setblock(fallrow,   fallcol, blocks[0]);
 		setblock(fallrow+1, fallcol, blocks[0]);
 		setblock(fallrow+2, fallcol, blocks[0]);
+
+		/* make sure not to send another one on the same level */
+		destlevel = level;
 	}
 	else
 	{
