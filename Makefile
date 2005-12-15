@@ -1,5 +1,10 @@
+.ifdef TCC
+CC = tcc
+CFLAGS = -Xp -I/usr/include
+.else
 CC = cc
 CFLAGS = -W -Wall -Os
+.endif
 LDFLAGS = -s
 LIBS = -lcurses
 OBJS = columns.o game.o screen.o
