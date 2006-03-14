@@ -55,7 +55,7 @@ static long progstarttime;
 static void starttimer(void)
 {
 	struct timeval progstart;
-	(void) gettimeofday(&progstart, NULL);
+	(void)gettimeofday(&progstart, NULL);
 	progstarttime = progstart.tv_sec * 1000
 		+ progstart.tv_usec / 1000;
 }
@@ -64,7 +64,7 @@ static long gettime(void)
 {
 	struct timeval tv;
 	long thetime;
-	(void) gettimeofday(&tv, NULL);
+	(void)gettimeofday(&tv, NULL);
 	thetime = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return thetime - progstarttime;
 }
@@ -86,7 +86,7 @@ static int delay(int ms)
 		long timeleft = endtime - gettime();
 		while (timeleft > 0)
 		{
-			millisleep((int) timeleft);
+			millisleep((int)timeleft);
 			timeleft = endtime - gettime();
 		}
 		return 0;
@@ -96,7 +96,7 @@ static int delay(int ms)
 		long timeleft = endtime - gettime();
 		if (timeleft < 0)
 			return 0;
-		return (int) timeleft;
+		return (int)timeleft;
 	}
 }
 
@@ -125,7 +125,7 @@ static void drawscreen(void)
 	{
 		if (!cleanblock[r][c])
 		{
-			drawblock(r-3, c, (chtype) getblock(r, c));
+			drawblock(r-3, c, (chtype)getblock(r, c));
 			cleanblock[r][c] = 1;
 		}
 	}
@@ -528,7 +528,7 @@ static void showblinkers(void)
 	for (c = 0; c < width;  c++)
 	{
 		if (blinking[r][c])
-			drawblock(r-3, c, (chtype) playfield[r][c]);
+			drawblock(r-3, c, (chtype)playfield[r][c]);
 	}
 }
 
@@ -553,9 +553,9 @@ static int enforcegravity(void)
 
 static void pausegame(void)
 {
-	(void) nodelay(stdscr, FALSE); /* do wait this time */
-	(void) getch();
-	(void) nodelay(stdscr, TRUE);  /* now stop delaying for input */
+	(void)nodelay(stdscr, FALSE); /* do wait this time */
+	(void)getch();
+	(void)nodelay(stdscr, TRUE);  /* now stop delaying for input */
 }
 
 /* devour all input up to a 'q' (in which case return 1) or the end of
@@ -583,7 +583,7 @@ static void dofall(void)
 {
 	long timeleft;
 
-	(void) delay(falldelay); /* set a delay */
+	(void)delay(falldelay); /* set a delay */
 
 	while ((timeleft = delay(-1)) > 20)
 	{
@@ -627,7 +627,7 @@ static void dofall(void)
 	}
 
 	if (timeleft)
-		(void) delay(0); /* finish the delay */
+		(void)delay(0); /* finish the delay */
 
 	if (!makeblocksfall())
 	{
@@ -704,7 +704,7 @@ void playgame(int w, int h)
 	width  = w;
 	height = h + 3; /* the extra 3 are at the top, not visible */
 
-	srandom((unsigned int) time(NULL));
+	srandom((unsigned int)time(NULL));
 	emptyblocks();
 	starttimer();
 	startfall();
