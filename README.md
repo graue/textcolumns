@@ -5,3 +5,23 @@ make them fall faster. % blocks are special: they clear all blocks of
 the type they land on.
 
 This game requires the curses library.
+
+Screenshot:
+
+                --------------------
+               |                    |
+       15      |        &&          |   Level 1
+               |        $$          |
+               |        $$          |
+               |                    |
+               |                    |
+               |                    |
+               |                    |
+               |                    |
+               |      OO            |
+               |      OO            |
+               |      $$            |
+               |    OO@@    &&      |
+               |    &&&&@@$$&&      |
+               |    OO@@&&OO@@OO$$  |
+                --------------------
